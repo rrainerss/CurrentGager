@@ -1,6 +1,7 @@
 import sys
 from dataInputOutput import printNewData
 from dataInputOutput import clearConsole
+from dataInputOutput import connectDatabase
 
 clearConsole()
 
@@ -19,4 +20,5 @@ except:
 print("--- Welcome to CurrentGager")
 input("--- No previous price records found. Press Enter to gather new data ...")
 
+connectDatabase(configurationValues)
 printNewData(configurationValues["url"])

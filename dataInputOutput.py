@@ -9,12 +9,14 @@ def connectDatabase(configurationValues):
     mydb = mysql.connector.connect(
         host=configurationValues["host"],
         user=configurationValues["user"],
-        password=configurationValues["password"]
+        password=configurationValues["password"],
+        database=configurationValues["database"]
     )
 
     cursor = mydb.cursor()
-    cursor.execute("DROP DATABASE IF EXISTS electricity_prices")
-    cursor.execute("CREATE DATABASE electricity_prices")
+    # cursor.execute("DROP DATABASE IF EXISTS electricity_prices")
+    # cursor.execute("CREATE DATABASE IF NOT EXISTS electricity_prices")
+
 
 
 # Clear console output for either Linux or Windows

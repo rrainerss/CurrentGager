@@ -1,13 +1,6 @@
-import os
 import sys
 from dataInputOutput import printNewData
-
-# Clear console output for either Linux or Windows
-def clearConsole():
-    try:
-        os.system("clear")
-    except:
-        os.system("clr")
+from dataInputOutput import clearConsole
 
 clearConsole()
 

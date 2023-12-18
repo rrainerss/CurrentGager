@@ -16,3 +16,5 @@ Install BeautifulSoup library:
 or
 *sudo apt-get install python3-bs4=4.12.2*
 
+os, requests and datetime already come with py
+and configparser

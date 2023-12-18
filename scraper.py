@@ -2,18 +2,23 @@ import os
 import requests
 from bs4 import BeautifulSoup
 
-# Clear console output for either Linux or Windows
-try:
-    os.system("clear")
-except:
-    os.system("clr")
+def scrapeData(url):
+    # Get response, extract code, parse into HTML
+    response = requests.get(url)
+    htmlCode = response.content
+    soup = BeautifulSoup(htmlCode, "html.parser")
 
-url = "https://www.nordpoolgroup.com/en/Market-data1/Dayahead/Area-Prices/ALL1/Hourly/?view=table"
+    # print(soup.prettify())
 
-response = requests.get(url)
+    dates = soup.find_all("span", class_="help")
+    date_today = dates[0].get_text()
 
-htmlCode = response.content
+    print(date_today)
 
-parsedHtml = BeautifulSoup(htmlCode, "html.parser")
+    time_intervals_HTML = soup.find_all("tr", attrs={"data-hours": True})
+    time_intervals_values = {}
 
-print(parsedHtml.prettify())
+    for time_interval in time_intervals_HTML:
+        time_intervals_values[time_interval.find("th").get_text()] = time_interval.find("th").find_next().get_text()
+
+    return time_intervals_values

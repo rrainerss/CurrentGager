@@ -13,9 +13,9 @@ def printNewData(url):
     data = scrapeData(url)
 
     clearConsole()
-    print(f"--- Here is the price table for {date.today()}")
+    print(f"--- Here is the electricity price table for {date.today()}")
     print()
 
-    print("--- {:<6} {:<6}".format('Hour','Price'))
+    print("--- {:<6} {:<10}".format('Hour','Price(eur)'))
     for key, value in data.items():
-        print("--- {:<6} {:<6}".format(key, value))
+        print("--- {:<6} {:<10}".format(key, value))

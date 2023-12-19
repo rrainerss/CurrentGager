@@ -1,5 +1,4 @@
 from dataInputOutput import clearConsole
-from dataInputOutput import printNewData
 
 def test_clearConsole(mocker):
     # Create a fake system

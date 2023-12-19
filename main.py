@@ -4,6 +4,16 @@ from dataInputOutput import getExistingData
 from dataInputOutput import printNewData
 from runMigrations import migrate
 from scraper import scrapeData
+import logging
+
+logging.basicConfig(
+    filename='info.log',
+    level=logging.INFO,
+    filemode='w',
+    format='%(message)s'
+)
+logging.info('-')
+logging.info('Program was run')
 
 clearConsole()
 config = {}
@@ -31,10 +41,12 @@ getExistingData(config)
 if getExistingData(config):
     input("--- Previous price records found! Press enter to show ...")
     data = getExistingData(config)
+    logging.info('Records were found')
 else:
     input("--- No previous price records found. Press Enter to gather new data ...")
     data = scrapeData(config)
+    logging.info('No records found')
 
 printNewData(config, data)
-
+logging.shutdown()
 

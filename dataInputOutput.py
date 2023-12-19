@@ -3,22 +3,6 @@ from datetime import date
 import os
 import mysql.connector
 
-cursor = ""
-
-def connectDatabase(configurationValues):
-    mydb = mysql.connector.connect(
-        host=configurationValues["host"],
-        user=configurationValues["user"],
-        password=configurationValues["password"],
-        database=configurationValues["database"]
-    )
-
-    cursor = mydb.cursor()
-    # cursor.execute("DROP DATABASE IF EXISTS electricity_prices")
-    # cursor.execute("CREATE DATABASE IF NOT EXISTS electricity_prices")
-
-
-
 # Clear console output for either Linux or Windows
 def clearConsole():
     try:
@@ -39,4 +23,19 @@ def printNewData(url):
     saveToDatabase(data)
 
 def saveToDatabase(data):
-    print()
+    print(data)
+
+def connectToDatabase(config):
+    mydb = mysql.connector.connect(
+        host=config["host"],
+        user=config["user"],
+        password=config["password"],
+        database=config["database"]
+    )
+
+    cursor = mydb.cursor()
+    return cursor
+
+def checkExistingData(config):
+    cursor = connectToDatabase(config)
+

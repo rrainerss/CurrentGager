@@ -1,8 +1,9 @@
 import sys
-from dataInputOutput import printNewData
 from dataInputOutput import clearConsole
-from dataInputOutput import checkExistingData
+from dataInputOutput import getExistingData
+from dataInputOutput import printNewData
 from runMigrations import migrate
+from scraper import scrapeData
 
 clearConsole()
 config = {}
@@ -20,12 +21,20 @@ except:
 
 print("--- Welcome to CurrentGager")
 
-checkExistingData(config)
-
-input("--- No previous price records found. Press Enter to gather new data ...")
-
 # Uncomment when running for the first time - migrates database structure
-migrate(config)
+# Can also be used to manually test both use cases for program - scraping data and fetching from db
+# migrate(config)
 
-# Connects to database and prints data
-# printNewData(config["url"])
+getExistingData(config)
+
+# Checks if data already exists
+if getExistingData(config):
+    input("--- Previous price records found! Press enter to show ...")
+    data = getExistingData(config)
+else:
+    input("--- No previous price records found. Press Enter to gather new data ...")
+    data = scrapeData(config)
+
+printNewData(config, data)
+
+

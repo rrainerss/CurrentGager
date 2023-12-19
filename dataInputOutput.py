@@ -39,3 +39,4 @@ def connectToDatabase(config):
 def checkExistingData(config):
     cursor = connectToDatabase(config)
 
+    cursor

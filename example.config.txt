@@ -1,1 +1,5 @@
-test
+url=https://nordpool.didnt.work/
+host=
+user=
+password=
+database=

@@ -53,3 +53,12 @@ alembic init my_alembic
 alembic revision --autogenerate -m "Initial migration" -->
 
 uncomment migrate line in main upon first run!!!!!!
+
+pip install pytest==7.4.3
+or
+sudo apt install python-pytest
+sudo apt-get install python3-pytest
+
+pip install pytest pytest-mock==3.12.0
+pytest --cache-clear
+pytest tests.py

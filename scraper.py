@@ -1,4 +1,3 @@
-import os
 import requests
 from bs4 import BeautifulSoup
 
@@ -8,16 +7,11 @@ def scrapeData(url):
     htmlCode = response.content
     soup = BeautifulSoup(htmlCode, "html.parser")
 
-    # print(soup.prettify())
-
-    dates = soup.find_all("span", class_="help")
-    date_today = dates[0].get_text()
-
-    print(date_today)
-
+    # Find the table with time intervals
     time_intervals_HTML = soup.find_all("tr", attrs={"data-hours": True})
     time_intervals_values = {}
 
+    # Assign time intervals and the corresponding price data to a dictionary
     for time_interval in time_intervals_HTML:
         time_intervals_values[time_interval.find("th").get_text()] = time_interval.find("th").find_next().get_text()
 

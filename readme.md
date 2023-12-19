@@ -41,3 +41,15 @@ sudo mysql -u root -p
 USE mysql;
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '1432328770';
 SELECT User, Host, plugin FROM mysql.user;
+
+<!-- 
+pip install alembic sqlalchemy
+sudo apt install alembic
+sudo apt install sqlalchemy
+mkdir migrations
+cd migrations
+alembic init my_alembic
+(then change the url)
+alembic revision --autogenerate -m "Initial migration" -->
+
+uncomment migrate line in main upon first run!!!!!!
